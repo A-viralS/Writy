@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserContext, UserContextProvider } from '../UserContext'
 export default function LoginPage () {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  const { setUserInfo } = useContext(UserContext)
+
+  async function LoginButton (e) {
+    e.preventDefault()
+    try {
+      const response = await axios.post('/login', {
+        email: email,
+        password: password
+      })
+      alert('Login successful. Welcome!')
+      setUserInfo(response.data)
+
+      navigate('/')
+    } catch (error) {
+      alert('Login failed. Please try again ')
+    }
+  }
+
   return (
     <div className=' min-h-screen overflow-hidden'>
       <div className='w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl'>
@@ -17,6 +41,9 @@ export default function LoginPage () {
               Email
             </label>
             <input
+              name='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               type='email'
               className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
             />
@@ -30,6 +57,9 @@ export default function LoginPage () {
             </label>
             <input
               type='password'
+              name='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
             />
           </div>
@@ -37,7 +67,10 @@ export default function LoginPage () {
             Forget Password?
           </a>
           <div className='mt-6'>
-            <button className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600'>
+            <button
+              onClick={LoginButton}
+              className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600'
+            >
               Login
             </button>
           </div>
