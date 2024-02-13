@@ -2,7 +2,6 @@ import axios from 'axios'
 import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-
 export default function RegisterPage () {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -23,7 +22,7 @@ export default function RegisterPage () {
   }
   return (
     <div>
-      <div className=' min-h-screen pt-6  sm:pt-0 bg-gray-50 '>
+      <div className='   '>
         <div className='flex justify-center items-center gap-5'>
           <div className=''>
             <a href='/'>

@@ -25,6 +25,7 @@ const Header = () => {
       <Link to='/' className='font-extrabold text-4xl'>
         Writy
       </Link>
+
       <nav>
         {name && (
           <>
@@ -43,15 +44,22 @@ const Header = () => {
             <div className='flex items-center text-2xl gap-5 font-bold '>
               <Link
                 to={'/login'}
-                className='shadow-neon rounded-md p-2 transition-all hover:scale-110'
+                className='shadow-neon flex items-center rounded-md p-2 transition-all hover:scale-110'
               >
                 Login
+                <img
+                  src='./public/login-svgrepo-com.svg'
+                  className='h-10'
+                  alt=''
+                />
               </Link>
+
               <Link
                 to='/register '
-                className='transform transition-all p-2 rounded-md hover:scale-125 shadow-light'
+                className='transform  flex items-center gap-1 transition-all p-2 rounded-md hover:scale-125 shadow-light'
               >
                 Register
+                <img src='./public/register.png' className='h-9' alt='' />
               </Link>
             </div>
           </>
