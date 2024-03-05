@@ -24,6 +24,10 @@ export default function LoginPage () {
     } catch (error) {
       alert('Login failed. Please try again ')
     }
+    // etstc
+    // const text=e.target.value
+    // const stringText=text.stringyfy();
+    // cosnt rstringText.filter("a");
   }
 
   return (
@@ -48,6 +52,7 @@ export default function LoginPage () {
               className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
             />
           </div>
+          <div>{email}</div>
           <div className='mb-2'>
             <label
               for='password'

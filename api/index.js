@@ -2,10 +2,13 @@ const express = require('express');
 const app =express();
 require('dotenv').config()
 const mongoose=require ('mongoose')
-
+const multer  = require('multer')
+const uploadMiddleware = multer({ dest: 'uploads/' })
+const fs = require('fs');
 
 //MODELS IMPORT
 const User= require('./models/User')
+const PostModel=require('./models/Post')
 
 //MIDDLEWARE FOR GETTING DATA FROM THE BODY
 app.use(express.json())
@@ -63,7 +66,7 @@ app.post('/login', async (req,res)=>{
   if (userDoc) {
     const passok= bcrypt.compareSync(password,userDoc.password);// this returns a boolean
   if (passok) {
-    const payload={
+    const payload={//these will be the properties that could be accessed from the cookies 
       id:userDoc._id,
       email:userDoc.email,
       name:userDoc.name
@@ -107,8 +110,36 @@ app.get('/logout',(req,res)=>{
   res.clearCookie('token').json({message:"logged out"})
 })
 
+//CREATEPOST 
 
+app.post('/create', uploadMiddleware.single('file'), async (req,res) => {
+  const {originalname,path} = req.file;
+  const parts = originalname.split('.');
+  const ext = parts[parts.length - 1];
+  const newPath = path+'.'+ext;
+  fs.renameSync(path, newPath);
 
+  const {token} = req.cookies;
+  jwt.verify(token, secret, {}, async (err,info) => {
+    if (err) throw err;
+    const {title,summary,content} = req.body;
+    const postDoc = await PostModel.create({
+      title,
+      summary,
+      content,
+      cover:newPath,
+      author:info.id,
+    });
+    res.json(postDoc);
+  });
+
+});
+//RETURNING MADE POSTS
+app.get('/posts',async (req,res)=>{
+  const posts=await PostModel.find().populate('author');
+  res.json(posts);
+
+})
 mongoose
   .connect(process.env.MONGO_URL)
   .then(e=>console.log("mongoFuckingDB connected"))
