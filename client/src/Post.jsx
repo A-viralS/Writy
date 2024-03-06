@@ -11,13 +11,17 @@ export default function Post ({
   author
 }) {
   {
-    console.log(author)
+    console.log('author', author)
   }
   return (
     <div className='post'>
       <div className='image'>
         <Link to={`/post/${_id}`}>
-          <img src={'http://localhost:3000/api/' + cover} alt={cover} />
+          <img
+            src={'http://localhost:3000/' + cover}
+            alt={cover}
+            className='h-48 w-2/3 object-cover rounded-md shadow-xl'
+          />
         </Link>
       </div>
       <div className='texts'>
@@ -25,7 +29,7 @@ export default function Post ({
           <h2>{title}</h2>
         </Link>
         <p className='info'>
-          {/* <a className='author'> this is {author.name}</a> */}
+          <a className='author'> this is {author.name}</a>
           <time>{formatISO9075(new Date(createdAt))}</time>
         </p>
         <p className='summary'>{summary}</p>

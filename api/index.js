@@ -5,7 +5,7 @@ const mongoose=require ('mongoose')
 const multer  = require('multer')
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
-
+const path = require('path');
 //MODELS IMPORT
 const User= require('./models/User')
 const PostModel=require('./models/Post')
@@ -20,6 +20,8 @@ app.use(cors({
   origin: 'http://localhost:5173',
 }));
 
+// FOR GETTING PICTURES
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //PASSWORD HASHING IMPORT
 const bcrypt = require('bcryptjs');
@@ -136,9 +138,18 @@ app.post('/create', uploadMiddleware.single('file'), async (req,res) => {
 });
 //RETURNING MADE POSTS
 app.get('/posts',async (req,res)=>{
-  const posts=await PostModel.find().populate('author');
+  const posts=await PostModel.find().populate('author').sort({createdAt:-1}).limit(20);
   res.json(posts);
 
+})
+
+//SENDING POST BY ID
+app.get('/post/:id', async (req,res)=>{
+  const {id}=req.params;
+
+  const postDoc=await PostModel.findById(id).populate('author');
+  console.log(postDoc);
+  res.json(postDoc);
 })
 mongoose
   .connect(process.env.MONGO_URL)

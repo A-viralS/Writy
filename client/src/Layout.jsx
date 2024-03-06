@@ -6,7 +6,6 @@ const Layout = () => {
   return (
     <div className='relative'>
       {/* Gradient Animation Background */}
-
       <div
         className='absolute top-0 left-0 w-full h-full'
         style={{
@@ -19,7 +18,10 @@ const Layout = () => {
       />
 
       {/* Main Container */}
-      <main className='p-8 sm:max-w-[600px] lg:max-w-full h-screen overflow-hidden relative'>
+      <main
+        className='p-8 sm:max-w-[600px] lg:max-w-full h-screen overflow-y-auto relative'
+        style={{ maxHeight: '100vh' }}
+      >
         {/* Header Component */}
         <Header />
 
