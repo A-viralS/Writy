@@ -14,6 +14,7 @@ import RegisterPage from './Pages/RegisterPage'
 import { UserContextProvider } from './UserContext'
 import CreatePostPage from './Pages/CreatePostPage'
 import PostPage from './Pages/PostPage'
+import EditPost from './Pages/EditPost'
 
 axios.defaults.baseURL = 'http://localhost:3000'
 axios.defaults.withCredentials = true //this allows cookies to be sent to the server
@@ -30,6 +31,7 @@ function App () {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/create' element={<CreatePostPage />} />
           <Route path='/post/:id' element={<PostPage />} />
+          <Route path='/edit/:id' element={<EditPost />} />
         </Route>
       </Routes>
     </UserContextProvider>

@@ -9,8 +9,7 @@ const Layout = () => {
       <div
         className='absolute top-0 left-0 w-full h-full'
         style={{
-          background:
-            'linear-gradient(to bottom right, #f2b36f, #FFFFFF,#1ba3f2)',
+          background: 'linear-gradient(to bottom right, #CAA6A6, #CAA6A6)',
           backgroundSize: '200% 100%',
           animation: 'gradientAnimation 4s linear infinite',
           zIndex: -1
