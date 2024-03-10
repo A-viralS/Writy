@@ -9,7 +9,7 @@ const Layout = () => {
       <div
         className='absolute top-0 left-0 w-full h-full'
         style={{
-          background: 'linear-gradient(to bottom right, #CAA6A6, #CAA6A6)',
+          background: 'linear-gradient(to bottom right, white ,white)',
           backgroundSize: '200% 100%',
           animation: 'gradientAnimation 4s linear infinite',
           zIndex: -1
@@ -18,10 +18,11 @@ const Layout = () => {
 
       {/* Main Container */}
       <main
-        className='p-8 sm:max-w-[600px] lg:max-w-full h-screen overflow-y-auto relative'
+        className=' sm:max-w-[600px] lg:max-w-full h-screen overflow-y-auto  bg-blue-400 relative'
         style={{ maxHeight: '100vh' }}
       >
         {/* Header Component */}
+        <div className=''></div>
         <Header />
 
         {/* Outlet for nested routes */}

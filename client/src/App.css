@@ -52,7 +52,7 @@ margin-top: 2px;
 }
 .btn-12 span {
   background: rgb(0,172,238);
-background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+background: linear-gradient(0deg, rgb(7, 11, 12) 0%, rgb(2, 6, 10) 100%);
   display: block;
   position: absolute;
   width: 130px;
@@ -109,6 +109,7 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
 }
 button {
   margin: 20px;
+  background-color: #333;
 }
 
 div.post div.texts h2{
@@ -132,7 +133,7 @@ div.post p.info a.author{
 }
 div.post p.summary{
   margin:10px 0;
-  line-height: 1.8rem;
+
 }
 div.post{
   display: grid;
@@ -143,5 +144,62 @@ div.post{
 @media screen and (min-width: 700px) {
   div.post{
       grid-template-columns: .9fr 1.1fr;
+  }
+}
+
+.header-btn{
+  display: flex;
+  border: 2px solid ;
+border-radius: xl;
+color:white
+  
+}
+/* Add this to your existing CSS or create a new stylesheet */
+
+/* Center the form */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Style input fields */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Style file input */
+
+
+
+
+/* Style ReactQuill editor */
+.react-quill {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style the create post button */
+
+
+/* Add some spacing to the button */
+
+
+/* Center the form horizontally and vertically */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Add media query for responsiveness */
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
   }
 }

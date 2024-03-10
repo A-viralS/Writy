@@ -56,8 +56,7 @@ const CreatePostPage = () => {
       Setredirect(true)
 
       if (response.status === 200) {
-        const responseData = await response.json()
-        console.log('Response from server:', responseData)
+        console.log('Response from server:', response)
       } else {
         console.error(
           'Server responded with an error:',
@@ -82,14 +81,14 @@ const CreatePostPage = () => {
       <input
         type='text'
         className='my-2'
-        placeholder={'Title '}
+        placeholder={'Give an attractive Title!!'}
         value={title}
         onChange={ev => setTitle(ev.target.value)}
       />
       <input
         type='text'
         className='my-2'
-        placeholder={'Summary '}
+        placeholder={'Write a summary to generate interest'}
         value={summary}
         onChange={ev => setSummary(ev.target.value)}
       />
@@ -107,8 +106,8 @@ const CreatePostPage = () => {
       />
       <div className='flex justify-center'>
         <button className='custom-btn btn-12  mt-10 '>
-          <span>Create post!! </span>
-          <span>Done?</span>
+          <span className='bg-black'>Create post!! </span>
+          <span className='bg-black'>Done?</span>
         </button>
       </div>
     </form>

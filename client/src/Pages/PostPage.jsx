@@ -24,7 +24,7 @@ const PostPage = () => {
   return (
     <div>
       <div>
-        <h1 className='text-3xl font-bold underline text-center'>
+        <h1 className='text-3xl mb-2 font-mono  text-center font-extrabold uppercase '>
           {postInfo.title}
         </h1>
         <img
@@ -33,7 +33,7 @@ const PostPage = () => {
           className='max-h-[500px] text-center object-cover rounded-md shadow-xl mx-auto'
         />
       </div>
-      <p className='text-lg font-light italic'>{formattedDate}</p>
+      <p className='text-lg font-light font-sans'>{formattedDate}</p>
       <div className='italic font-'>by @{postInfo.author?.name}</div>
       {userInfo && userInfo.id === postInfo.author?._id && (
         <div className='flex justify-center'>
@@ -46,7 +46,9 @@ const PostPage = () => {
           <button className='bg-red-500 p-2 m-2 rounded-md'>Delete</button>
         </div>
       )}
-      <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+      <div className='border-2 border-white p-5 font-mono'>
+        <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+      </div>
     </div>
   )
 }

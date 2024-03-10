@@ -20,19 +20,27 @@ export default function Post ({
           <img
             src={'http://localhost:3000/' + cover}
             alt={cover}
-            className='h-48 w-2/3 object-cover rounded-md shadow-xl'
+            className='h-48 w-2/3 object-cover rounded-xl shadow-md  shadow-black'
           />
         </Link>
       </div>
       <div className='texts'>
         <Link to={`/post/${_id}`}>
-          <h2>{title}</h2>
+          <h2 className=' uppercase font-2xl font-extrabold text-white'>
+            {title}
+          </h2>
         </Link>
         <p className='info'>
-          <a className='author'> this is {author.name}</a>
-          <time>{formatISO9075(new Date(createdAt))}</time>
+          <a className='author italic'>By {author.name}</a>
+          <span className='line-break'>&nbsp;</span>
+          <span>
+            <time className='font-sm text-black font-thin'>
+              {formatISO9075(new Date(createdAt))}
+            </time>
+          </span>
         </p>
-        <p className='summary'>{summary}</p>
+
+        <p className='summary font-mono font-bold'>{summary}</p>
       </div>
     </div>
   )
