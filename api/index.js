@@ -154,37 +154,42 @@ app.get('/post/:id', async (req,res)=>{
 
 
 //UPDATE POST
-app.put('/edit',uploadMiddleware.single('file'), async (req,res) => {
-  console.log('enterting put end point');
+app.put('/edit/:id', uploadMiddleware.single('file'), async (req, res) => {
+  const { id } = req.params;
+
   let newPath = null;
   if (req.file) {
-    const {originalname,path} = req.file;
+    const { originalname, path } = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
-    newPath = path+'.'+ext;
+    newPath = path + '.' + ext;
     fs.renameSync(path, newPath);
   }
 
-  const {token} = req.cookies;
-  jwt.verify(token, secret, {}, async (err,info) => {
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
-    const {id,title,summary,content} = req.body;
-    console.log('body in putting api ',req.body);
-    const postDoc = await PostModel.findById(id);
-    const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
-    if (!isAuthor) {
-      return res.status(400).json('you are not the author');
+
+    const { title, summary, content } = req.body;
+
+    try {
+      const postDoc = await PostModel.findById(id);
+      const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+      if (!isAuthor) {
+        return res.status(400).json('You are not the author');
+      }
+
+      postDoc.title = title;
+      postDoc.summary = summary;
+      postDoc.content = content;
+      postDoc.cover = newPath ? newPath : postDoc.cover;
+      await postDoc.save();
+
+      res.json(postDoc);
+    } catch (error) {
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-    await postDoc.save({
-      title,
-      summary,
-      content,
-      cover: newPath ? newPath : postDoc.cover,
-    });
-
-    res.json(postDoc);
   });
-
 });
 mongoose
   .connect(process.env.MONGO_URL)

@@ -57,6 +57,7 @@ const CreatePostPage = () => {
 
       if (response.status === 200) {
         console.log('Response from server:', response)
+        navigate('/')
       } else {
         console.error(
           'Server responded with an error:',

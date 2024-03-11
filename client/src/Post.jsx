@@ -26,7 +26,7 @@ export default function Post ({
       </div>
       <div className='texts'>
         <Link to={`/post/${_id}`}>
-          <h2 className=' uppercase font-2xl font-extrabold text-white'>
+          <h2 className=' uppercase font-2xl font-extrabold text-white font-mono gradient-text'>
             {title}
           </h2>
         </Link>
@@ -35,7 +35,7 @@ export default function Post ({
           <span className='line-break'>&nbsp;</span>
           <span>
             <time className='font-sm text-black font-thin'>
-              {formatISO9075(new Date(createdAt))}
+              @ {formatISO9075(new Date(createdAt))}
             </time>
           </span>
         </p>

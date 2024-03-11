@@ -24,7 +24,7 @@ const PostPage = () => {
   return (
     <div>
       <div>
-        <h1 className='text-3xl mb-2 font-mono  text-center font-extrabold uppercase '>
+        <h1 className='text-3xl mb-2 font-mono text-center font-extrabold uppercase '>
           {postInfo.title}
         </h1>
         <img
@@ -33,12 +33,13 @@ const PostPage = () => {
           className='max-h-[500px] text-center object-cover rounded-md shadow-xl mx-auto'
         />
       </div>
-      <p className='text-lg font-light font-sans'>{formattedDate}</p>
-      <div className='italic font-'>by @{postInfo.author?.name}</div>
+      <p className='text-lg font-light font-sans text-white'>{formattedDate}</p>
+      <div className='italic text-white'>by @{postInfo.author?.name}</div>
       {userInfo && userInfo.id === postInfo.author?._id && (
-        <div className='flex justify-center'>
+        <div className='flex justify-center '>
+          <p></p>
           <Link
-            className='bg-green-500 p-2 m-2 rounded-md'
+            className='bg-green-500 p-2  m-2 rounded-md'
             to={`/edit/${postInfo._id}`}
           >
             Edit
@@ -46,7 +47,7 @@ const PostPage = () => {
           <button className='bg-red-500 p-2 m-2 rounded-md'>Delete</button>
         </div>
       )}
-      <div className='border-2 border-white p-5 font-mono'>
+      <div className='border-2 border-white p-5 font-mono bg-gray-200'>
         <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
       </div>
     </div>

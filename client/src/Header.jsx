@@ -52,7 +52,7 @@ const Header = () => {
             <div className='flex items-center text-2xl gap-5 font-bold '>
               <Link
                 to={'/login'}
-                className='mr-5 text-white border-2 bg-[#17252A]  rounded-md p-2 shadow-xl transition-all hover:scale-110'
+                className='mr-5 text-white border-2 bg-[#17252A]  rounded-md p-2 shadow-xl transition-all hover:scale-110 flex h-[50px]'
               >
                 Login
                 <svg
@@ -82,7 +82,7 @@ const Header = () => {
 
               <Link
                 to='/register '
-                className='flex mr-5 text-white border-2 bg-[#17252A]  rounded-md p-2 shadow-xl transition-all hover:scale-110'
+                className='mr-5 text-white border-2 bg-[#17252A] rounded-md p-2 shadow-xl transition-all hover:scale-110 flex h-[50px]'
               >
                 Register
                 <img
